@@ -43,6 +43,14 @@ def index():
     # On top of the table there is a button to insert a new bird.
     return dict(url_signer=url_signer)
 
+@action('add', method = ["GET", "POST"])
+@action.uses(db, auth.user, 'add.html')
+def add():
+    form = Form(db.listing, csrf_session = session, formstyle = FormStyleBulma)
+    if form.accepted:
+        redirect(URL('index'))
+    return dict(form = form)
+
 
 # This is an example only, to be used as inspiration for your code to increment the bird count.
 # Note that the bird_id parameter ...
@@ -57,18 +65,6 @@ def index():
 #    b.update_record(n_sighting=new_count)
 #    redirect(URL('index'))
 
-#@action('add', method=["GET", "POST"])
-#@action.uses('add.html', db, auth.user)
-#def add():
-#    form = Form(
-#        db.bird,
-#        formstyle=FormStyleBulma,
-###        csrf_session=session
-#        )
-#    if form.accepted:
-#        redirect(URL('index'))
-#    return dict(form=form)
-    
 #@action('edit/<bird_id:int>', method=["GET", "POST"])
 #@action.uses('edit.html', db, auth.user)
 #def edit(bird_id=None):

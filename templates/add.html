@@ -1,6 +1,57 @@
-[[extend 'layout.html']]
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlugSells</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <style>
+    .boxed {
+      border: 1px solid rgb(15, 15, 15);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar has-shadow is-warning">
+  
+  <!-- LOGO / BRAND -->
+  <div class="navbar-brand">
+    <a class="navbar-item">
+      <img src="[[=URL('static', 'images/slugsells.png')]]" alt="site logo" style="max-height: 70px" class="py-2 px-2"> 
+    </a>
+    <a class="navbar-burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+  <div class="navbar-menu" id="nav-links">
+    <div class="navbar-end">
+      <a class="navbar-item" href="[[=URL('add')]]">Add Listing</a>
+      <a class="navbar-item">My Account</a>
+      <a class="navbar-item">Shopping Cart (0)</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Breadcrumbs-->
+<div class="section pt-4 pb-0">
+  <nav class="breadcrumb">
+    <ul>
+      <li><a class="has-text-grey">SlugSells</a></li>
+      <li><a class="has-text-grey">Clothing</a></li>
+      <li class="is-active"><a>Hoodies</a></li>
+    </ul>
+  </nav>
+</div>
+  
+<script src="index.js"></script>
+</body>
+</html>
 
 <div class="section">
-   <h1 class ="title">Add a Bird</h1>
+   <h1 class ="title">Add a Listing</h1>
    [[=form]]
 </div>

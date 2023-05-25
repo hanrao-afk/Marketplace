@@ -21,15 +21,13 @@ def get_time():
 ## always commit your models to avoid problems later
 
 db.define_table(
-    'bird',
+    'listing',
     ### TODO: define here any fields you need.
     ### To help you, here's how to declare the user_email field.
-    Field('bird'),
-    Field('weight', 'integer'),
-    Field('diet'),
-    Field('habitat'),
-    Field('n_sighting', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
-    Field('user_email', default=get_user_email)
+    Field('Name'),
+    Field('Condition'),
+    Field('Category'),
+    Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0)
 )
 
 db.commit()

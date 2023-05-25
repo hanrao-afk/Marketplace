@@ -39,3 +39,12 @@ CREATE TABLE "bird"(
     "user_email" CHAR(512)
 );
 success!
+timestamp: 2023-05-24T20:08:00.672593
+CREATE TABLE "listing"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "condition" CHAR(512),
+    "category" CHAR(512),
+    "price" INTEGER
+);
+success!
