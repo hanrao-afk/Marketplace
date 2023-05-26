@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -5,10 +6,56 @@
   <title>SlugSells</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
   <style>
+    .scrolling-bar {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+
+.scrolling-container {
+  display: inline-flex;
+}
+
+.scrolling-item {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eee;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+    .spread-words {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;  
+    }
+
+    .spread-words span {
+      flex-grow: 1;
+      text-align: center;
+    }
+
     .boxed {
       border: 1px solid rgb(15, 15, 15);
       padding: 1px 4px;
       border-radius: 3px;
+    }
+    .is-custom-blue {
+      background-color: #2F3061;
+    }
+    .navbar {
+      margin-bottom: 20px; /* Add margin-bottom to create space below the navbar */
+    }
+    .hero-title {
+      color: white;
+      justify-content: space-between;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+    .search-input {
+      margin-right: 10px;
     }
   </style>
 </head>
@@ -18,7 +65,7 @@
   
   <!-- LOGO / BRAND -->
   <div class="navbar-brand">
-    <a class="navbar-item">
+    <a class="navbar-item" href = "[[=URL('index')]]">
       <img src="[[=URL('static', 'images/slugsells.png')]]" alt="site logo" style="max-height: 70px" class="py-2 px-2"> 
     </a>
     <a class="navbar-burger" id="burger">
@@ -27,6 +74,23 @@
       <span></span>
     </a>
   </div>
+  
+  <!-- SEARCH BAR -->
+<div class="navbar-menu">
+  <div class="navbar-start">
+    <div class="navbar-item search-bar">
+      <div class="control has-icons-right">
+        <input class="input is-expanded" type="text" placeholder="Search">
+        <span class="icon is-small is-right">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- NAV BAR -->
+
   <div class="navbar-menu" id="nav-links">
     <div class="navbar-end">
       <a class="navbar-item" href="[[=URL('add')]]">Add Listing</a>
@@ -36,8 +100,9 @@
   </div>
 </nav>
 
-<!-- Breadcrumbs-->
-<div class="section pt-4 pb-0">
+
+<!-- Breadcrumbs -->
+<div class="section pt-4 pb-0 mt-4">
   <nav class="breadcrumb">
     <ul>
       <li><a class="has-text-grey">SlugSells</a></li>
@@ -46,7 +111,23 @@
     </ul>
   </nav>
 </div>
-  
+
+  <!--  BANNER -->
+
+<section class="hero is-custom-blue is-bold mt-4">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-centered hero-title spread-words">
+        <span>BUY</span> <span>SELL</span> <span>TRADE</span>
+      </h1>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 <script src="index.js"></script>
 </body>
 </html>

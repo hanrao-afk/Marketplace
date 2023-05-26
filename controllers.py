@@ -35,13 +35,10 @@ from . common import db, session, T, cache, auth, signed_url
 url_signer = URLSigner(session)
 
 @action('index')
-@action.uses('index.html', db, auth.user, url_signer)
+@action.uses(db, auth.user, 'index.html')
 def index():
-    ## TODO: Show to each logged in user the birds they have seen with their count.
-    # The table must have an edit button to edit a row, and also, a +1 button to increase the count
-    # by 1 (this needs to be protected by a signed URL).
-    # On top of the table there is a button to insert a new bird.
-    return dict(url_signer=url_signer)
+    return dict()
+
 
 @action('add', method = ["GET", "POST"])
 @action.uses(db, auth.user, 'add.html')
@@ -50,6 +47,11 @@ def add():
     if form.accepted:
         redirect(URL('index'))
     return dict(form = form)
+
+@action('home', method=["GET", "POST"])
+@action.uses(db, auth.user, 'index.html')
+def home():
+    redirect(URL('default', 'index'))
 
 
 # This is an example only, to be used as inspiration for your code to increment the bird count.
