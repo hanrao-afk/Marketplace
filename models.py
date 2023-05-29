@@ -27,7 +27,8 @@ db.define_table(
     Field('Name'),
     Field('Condition'),
     Field('Category'),
-    Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0)
+    Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
+    Field('Image', 'upload')
 )
 
 db.commit()
