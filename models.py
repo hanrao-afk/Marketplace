@@ -26,7 +26,7 @@ db.define_table(
     ### To help you, here's how to declare the user_email field.
     Field('Name'),
     Field('Condition'),
-    Field('Category'),
+    Field('Category', requires=IS_IN_SET(['Clothing', 'Electronics', 'Dorm Gear', 'School Supplies' ,'Free Stuff', 'Other'])),
     Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
     Field('Image', 'upload')
 )
