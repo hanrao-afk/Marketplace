@@ -48,3 +48,6 @@ CREATE TABLE "listing"(
     "price" INTEGER
 );
 success!
+timestamp: 2023-05-29T22:55:58.978564
+ALTER TABLE "listing" ADD "image" CHAR(512);
+success!
