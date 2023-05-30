@@ -114,6 +114,30 @@
   </div>
 </section>
 
+<!--  ITEMS -->
+
+<h1 class="title">
+  <span>All Listings</span>
+</h1>
+
+<div class="tile is-ancestor">
+  [[for product in products:]]
+  <div class="tile is-parent is-3">
+    <div class="tile is-child box">
+      <p class="title">[[= product['Name']]]</p>
+      <p><strong>Condition:</strong> [[= product['Condition']]]</p>
+      <p><strong>Category:</strong> [[= product['Category']]]</p>
+      <p><strong>Price:</strong> [[= product['Price']]]</p>
+      <figure class="image is-4by3">
+        <img src="../uploads/listing.Image.9a01233716933770.Y2FyLmpwZWc=.jpeg" alt="Product Image">
+      </figure>
+    </div>
+  </div>
+  [[pass]]
+</div>
+  
+
+
 <script src="index.js"></script>
 </body>
 </html>

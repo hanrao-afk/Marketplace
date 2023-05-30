@@ -37,7 +37,8 @@ url_signer = URLSigner(session)
 @action('index')
 @action.uses(db, auth.user, 'index.html')
 def index():
-    return dict()
+    products = db(db.listing).select().as_list()
+    return dict(products=products)
 
 
 @action('add', method = ["GET", "POST"])
