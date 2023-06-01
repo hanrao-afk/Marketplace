@@ -31,6 +31,8 @@ from py4web.utils.url_signer import URLSigner
 
 from .models import get_user_email
 from . common import db, session, T, cache, auth, signed_url
+import base64
+from pydal.validators import *
 
 url_signer = URLSigner(session)
 
@@ -41,13 +43,52 @@ def index():
     return dict(products=products)
 
 
+# @action('add', method = ["GET", "POST"])
+# @action.uses(db, auth.user, 'add.html')
+# def add():
+#     form = Form(db.listing, csrf_session = session, formstyle = FormStyleBulma)
+#     if form.accepted:
+#         redirect(URL('index'))
+#     return dict(form = form)
+
 @action('add', method = ["GET", "POST"])
 @action.uses(db, auth.user, 'add.html')
 def add():
-    form = Form(db.listing, csrf_session = session, formstyle = FormStyleBulma)
+    form = Form([Field('Name'),
+    Field('Condition', requires=IS_IN_SET(['New', 'Used - Like New', 'Used - Good', 'Used - Fair'])),
+    Field('Category', requires=IS_IN_SET(['Clothing', 'Electronics', 'Dorm Gear', 'School Supplies' ,'Free Stuff', 'Other'])),
+    Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
+    Field('Image', 'upload'),
+    Field('Description', 'text') 
+    ], csrf_session = session, formstyle = FormStyleBulma)
     if form.accepted:
+        # We manually process the fields, this is to get image upload button and create the form
+        # database stores the image as text, allowing us to store the data_url for each listing
+       
+        fileObject = form.vars['Image']
+        # this is the image object that is passed in
+       
+        contents = fileObject.file.read()
+        # this is the contents of the image, essentially what encode
+
+        encodedVal = base64.b64encode(contents).decode('utf-8')
+        data_url = f'data:{fileObject.content_type};base64,{encodedVal}'
+
+        # first line encodes the file to base 64 then decodes to make it part of data URL
+        # second line creates the URL which we can call in index.html
+    
+        db.listing.insert(
+            Name=form.vars["Name"],
+            Condition=form.vars["Condition"],
+            Category=form.vars["Category"],
+            Price=form.vars["Price"],
+            Image=data_url,
+            Description=form.vars['Description']
+        )
+        # this actually stores it in the DB
         redirect(URL('index'))
     return dict(form = form)
+
 
 @action('home', method=["GET", "POST"])
 @action.uses(db, auth.user, 'index.html')
