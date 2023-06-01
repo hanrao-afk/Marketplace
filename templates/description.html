@@ -1,0 +1,14 @@
+[[extend 'layout.html']]
+
+<div class="tile is-ancestor">
+    [[for row in rows:]]
+      <div class="tile is-parent is-3">
+        <div class="tile is-child box">
+          <p class="title">[[= row['Name']]]</p>
+          <p><strong>Condition:</strong> [[= row['Condition']]]</p>
+          <p><strong>Category:</strong> [[= row['Category']]]</p>
+          <p><strong>Price:</strong> [[= row['Price']]]</p>
+        </div>
+      </div>
+    [[pass]]
+  </div>

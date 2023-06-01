@@ -55,6 +55,16 @@ def home():
     redirect(URL('default', 'index'))
 
 
+@action('description/<listing_id:int>', method = ["GET", "POST"])
+@action.uses(db, auth.user, 'description.html')
+def description(listing_id = None):
+    assert listing_id is not None
+
+    rows = db(db.listing.id == listing_id).select()
+
+    return dict(rows = rows)
+
+
 # This is an example only, to be used as inspiration for your code to increment the bird count.
 # Note that the bird_id parameter ...
 #@action('inc/<bird_id:int>') # the :int means: please convert this to an int.
