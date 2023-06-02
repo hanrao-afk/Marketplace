@@ -101,9 +101,9 @@ def home():
 def description(listing_id = None):
     assert listing_id is not None
 
-    rows = db(db.listing.id == listing_id).select()
+    item = db(db.listing.id == listing_id).select()
 
-    return dict(rows = rows)
+    return dict(item=item)
 
 
 # This is an example only, to be used as inspiration for your code to increment the bird count.

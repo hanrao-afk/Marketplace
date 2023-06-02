@@ -1,15 +1,120 @@
-[[extend 'layout.html']]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlugSells</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <style>
+    .scrolling-bar {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
 
-<div class="tile is-ancestor">
-    [[for row in rows:]]
-      <div class="tile is-parent is-3">
-        <div class="tile is-child box">
-          <p class="title">[[= row['Name']]]</p>
-          <p><strong>Condition:</strong> [[= row['Condition']]]</p>
-          <p><strong>Category:</strong> [[= row['Category']]]</p>
-          <p><strong>Price:</strong> [[= row['Price']]]</p>
-          <p><strong>Description</strong> [[=row['Description']]]</p>
-        </div>
-      </div>
-    [[pass]]
+.scrolling-container {
+  display: inline-flex;
+}
+
+.scrolling-item {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eee;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+    .spread-words {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;  
+    }
+
+    .spread-words span {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .boxed {
+      border: 1px solid rgb(15, 15, 15);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .is-custom-blue {
+      background-color: #2F3061;
+    }
+    .navbar {
+      margin-bottom: 20px; /* Add margin-bottom to create space below the navbar */
+    }
+    .hero-title {
+      color: white;
+      justify-content: space-between;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+    .search-input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav class="navbar has-shadow is-warning">
+  
+  <!-- LOGO / BRAND -->
+  <div class="navbar-brand">
+    <a class="navbar-item" href = "[[=URL('index')]]">
+      <img src="[[=URL('static', 'images/slugsells.png')]]" alt="site logo" style="max-height: 70px" class="py-2 px-2"> 
+    </a>
+    <a class="navbar-burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
   </div>
+  
+  
+  <!-- NAV BAR -->
+
+  <div class="navbar-menu" id="nav-links">
+    <div class="navbar-end">
+      <a class="navbar-item" href="[[=URL('add')]]">Add Listing</a>
+      <a class="navbar-item">My Account</a>
+      <a class="navbar-item">Shopping Cart (0)</a>
+    </div>
+  </div>
+</nav>
+
+<div class="section pt-4 mt-4">
+  <nav class="breadcrumb">
+    <ul>
+      <li><a class="has-text-grey" href = "[[=URL('index')]]">SlugSells</a></li>
+      <li class="is-active"><a> [[= item[0]['Category']]] </a></li>
+      <li class="is-active"><a> [[= item[0]['Name']]] </a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="columns ml-2 mr-2">
+  <div class="column is-two-thirds">
+    <figure class="image is-256by256">
+      <img src="[[ = item[0]['Image'] ]]" alt="Product Image">
+    </figure>
+  </div>
+    
+  <div class="column is-one-third">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent"> 
+        <div class="tile is-child box"> 
+          <p class="title">[[= item[0]['Name']]]</p>
+          <p><strong>Condition:</strong> [[= item[0]['Condition']]]</p>
+          <p><strong>Category:</strong> [[= item[0]['Category']]]</p>
+          <p><strong>Price:</strong> $[[= item[0]['Price']]]</p>
+          <p><strong>Description:</strong> [[= item[0]['Description']]]</p>
+    </div>
+      </div>
+    </div> 
+  </div>
+</div>
