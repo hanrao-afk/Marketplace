@@ -24,6 +24,11 @@
   border-radius: 5px;
 }
 
+.navbar.has-border {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 4px;   
+  }
+
     .spread-words {
       display: flex;
       justify-content: space-around;
@@ -100,8 +105,57 @@
   </div>
 </nav>
 
+<!-- NAVIGATION LINKS -->
+<div class="navbar-menu has-border">
+  <div class="navbar-start">
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Categories
+      </a>
+      <div class="navbar-dropdown" id="dropdown">
+        <a class="navbar-item" href="#">
+          Clothing
+        </a>
+        <a class="navbar-item" href="#">
+          Electronics
+        </a>
+        <a class="navbar-item" href="#">
+          Dorm Gear
+        </a>
+        <a class="navbar-item" href="#">
+          School Supplies
+        </a>
+        <a class="navbar-item" href="#">
+          Free Stuff
+        </a>
+        <a class="navbar-item" href="#">
+          Other
+        </a>
+      </div>
+    </div>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Condition
+      </a>
+      <div class="navbar-dropdown" id="dropdown-condition">
+        <a class="navbar-item" href="#">
+          New
+        </a>
+        <a class="navbar-item" href="#">
+          Used - Like New
+        </a>
+        <a class="navbar-item" href="#">
+          Used - Good
+        </a>
+        <a class="navbar-item" href="#">
+          Used - Fair
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
-
+ 
   <!--  BANNER -->
 
 <section class="hero is-custom-blue is-bold mt-4">
@@ -117,7 +171,7 @@
 <!--  ITEMS -->
 
 <h1 class="title" style = "margin-left: 20px; margin-top: 40px;">
-  <span style = "font-size: 30px;">All Listings</span>
+  <span style = "font-size: 25px;">All Listings</span>
 </h1>
 
 <div class="tile is-ancestor">
@@ -129,10 +183,11 @@
     
       <div class="tile is-parent is-3">
           <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
-            <p class="title">[[= product['Name']]]</p>
             <figure class="image is-4by3">
               <img src="[[ = product['Image'] ]]" alt="Product Image">
             </figure>
+            <p></p>
+            <p><strong>[[= product['Name']]]</strong></p>
             <p><strong>Condition:</strong> [[= product['Condition']]]</p>
             <p><strong>Category:</strong> [[= product['Category']]]</p>
             <p><strong>Price:</strong> [[= product['Price']]]</p>
