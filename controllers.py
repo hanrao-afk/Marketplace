@@ -105,6 +105,21 @@ def description(listing_id = None):
 
     return dict(item=item)
 
+@action('get_products')
+@action.uses(db, auth.user)
+def get_products():
+    """Gets the list of products, possibly in response to a query."""
+    t = request.params.get('q')
+    if t:
+        tt = t.strip()
+        q = ((db.listing.Name.contains(tt)) |
+             (db.listing.Description.contains(tt)))
+        
+    
+    products = db(q).select(db.listing.ALL).as_list()
+
+    return dict(products = products)
+    
 
 # This is an example only, to be used as inspiration for your code to increment the bird count.
 # Note that the bird_id parameter ...

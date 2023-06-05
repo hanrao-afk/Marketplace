@@ -85,7 +85,7 @@
   <div class="navbar-start">
     <div class="navbar-item search-bar">
       <div class="control has-icons-right">
-        <input class="input is-expanded" type="text" placeholder="Search">
+        <input class="input is-expanded" type="text" placeholder="Search" v-model="query" @keyup="get_product">
         <span class="icon is-small is-right">
           <i class="fas fa-search"></i>
         </span>
