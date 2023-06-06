@@ -78,12 +78,13 @@
   </div>
 </div> -->
 
-<p class="control has-icons-right">
-  <input class="input" type="text" placeholder="Search users" v-model="query" @keyup="get_products" />
-</p>
+<div class="control has-icons-right">
+  <input class="input is-rounded" type="text" placeholder="Search users" v-model="query" @keyup="get_products" />
   <span class="icon is-small is-right clickable" @click="clearQuery">
     <i class="fa fa-times-circle"></i>
   </span>
+  
+</div>
 
   
 
