@@ -34,13 +34,18 @@ from . common import db, session, T, cache, auth, signed_url
 import base64
 from pydal.validators import *
 
+
 url_signer = URLSigner(session)
 
 @action('index')
 @action.uses(db, auth.user, 'index.html')
 def index():
     products = db(db.listing).select().as_list()
-    return dict(products=products)
+
+    return dict(
+        get_products_url = URL('get_products'),
+        products=products,
+        )
 
 
 # @action('add', method = ["GET", "POST"])
@@ -108,52 +113,15 @@ def description(listing_id = None):
 @action('get_products')
 @action.uses(db, auth.user)
 def get_products():
-    """Gets the list of products, possibly in response to a query."""
+
     t = request.params.get('q')
     if t:
         tt = t.strip()
         q = ((db.listing.Name.contains(tt)) |
              (db.listing.Description.contains(tt)))
         
-    
-    products = db(q).select(db.listing.ALL).as_list()
 
-    return dict(products = products)
-    
+    results = db(q).select(db.listing.ALL).as_list()
 
-# This is an example only, to be used as inspiration for your code to increment the bird count.
-# Note that the bird_id parameter ...
-#@action('inc/<bird_id:int>') # the :int means: please convert this to an int.
-#@action.uses(db, auth.user, url_signer.verify())
-# ... has to match the bird_id parameter of the Python function here.
-#def inc(bird_id=None):
-#    assert bird_id is not None
-
-#    b = db.bird[bird_id]
-#    new_count = b.n_sighting + 1
-#    b.update_record(n_sighting=new_count)
-#    redirect(URL('index'))
-
-#@action('edit/<bird_id:int>', method=["GET", "POST"])
-#@action.uses('edit.html', db, auth.user)
-#def edit(bird_id=None):
-#    b = db.bird[bird_id]
- #   if get_user_email() != b.user_email:
- #       redirect(URL('index'))
-        
- #   if b is None:
- #       redirect(URL('index'))
-    
- #   form = Form(
- #       db.bird,
- #       record=b,
- #       deletable=False,
- #       formstyle=FormStyleBulma,
- #       csrf_session=session
- #       )
-    
-#    if form.accepted:
-#        redirect(URL('index'))
-#    return dict(form=form)
-
-
+    print(results)
+    return dict(results=results)

@@ -21,25 +21,26 @@ let init = (app) => {
     };    
 
     app.get_products = function(){
-
         if (app.vue.query.length > 0){
-
             axios.get(get_products_url, {params: {q: app.vue.query}})
                 .then(function (result) {
                     app.data.results = result.data.results;
                 });
-
         } 
         else {
             app.vue.results = []
-        }
-        
-    }
+        } 
+    };
+
+    app.clearQuery = function (){
+        app.vue.query = '';
+    };
 
     // This contains all the methods.
     app.methods = {
         // Complete as you see fit.
-        search: app.get_products
+        get_products: app.get_products,
+        clearQuery: app.clearQuery,
     };
 
     // This creates the Vue instance.

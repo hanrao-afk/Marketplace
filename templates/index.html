@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+
  <!-- 
   <nav class="navbar has-shadow is-warning">
 
@@ -53,6 +53,41 @@
   </div>
 </nav>
 -->
+<!-- NAVIGATION LINKS -->
+<style>
+  [v-cloak] {
+        display: none;
+  }
+</style>
+    
+    
+<div class="section" id="vue-target" v-cloak>
+  
+  <!-- SEARCH BAR -->
+
+<!--<div class="navbar-menu">
+  <div class="navbar-start">
+    <div class="navbar-item search-bar">
+      <div class="control has-icons-right">
+        <input class="input is-expanded" type="text" placeholder="Search Item" v-model="query" @keyup="get_products">
+      </div>
+      <span class="icon is-small is-right clickable" @click="clearQuery">
+        <i class="fa fa-times-circle"></i>
+      </span>
+    </div>
+  </div>
+</div> -->
+
+<p class="control has-icons-right">
+  <input class="input" type="text" placeholder="Search users" v-model="query" @keyup="get_products" />
+</p>
+  <span class="icon is-small is-right clickable" @click="clearQuery">
+    <i class="fa fa-times-circle"></i>
+  </span>
+
+  
+
+
 <!-- NAVIGATION LINKS -->
 <div class="navbar-menu has-border">
   <div class="navbar-start">
@@ -103,50 +138,73 @@
   </div>
 </div>
 
- 
-  <!--  BANNER -->
-
-<section class="hero is-link is-bold mt-4">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title is-size-1-desktop is-size-2-tablet is-size-3-mobile has-text-centered hero-title spread-words">
-        <span>BUY</span> <span>SELL</span> <span>TRADE</span>
-      </h1>
-    </div>
-  </div>
-</section>
 
 <!--  ITEMS -->
+<div>
+  <div v-if="query.length > 0">
+    <h1 class="title" style="margin-left: 20px; margin-top: 40px;">
+      <span style="font-size: 25px;">You Searched: {{ query }}</span>
+    </h1>
 
-<h1 class="title" style = "margin-left: 20px; margin-top: 40px;">
-  <span style = "font-size: 25px;">All Listings</span>
-</h1>
-
-<div class="tile is-ancestor">
-  [[for i, product in enumerate(products):]]
-    [[if i % 4 == 0:]]
-      </div>
-      <div class="tile is-ancestor">
-    [[pass]]
+    <div class="tile is-ancestor" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: 20px;">
+      <div v-for="(result, i) in results" :key="i">
     
-      <div class="tile is-parent is-3">
-          <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
+        <div class="tile is-parent">
+          <a class="tile is-child box" :href="'/Marketplace/description/' + result.id">
             <figure class="image is-4by3">
-              <img src="[[ = product['Image'] ]]" alt="Product Image">
+              <img :src="result.Image" alt="Product Image">
             </figure>
             <p></p>
-            <p><strong>[[= product['Name']]]</strong></p>
-            <p><strong>Condition:</strong> [[= product['Condition']]]</p>
-            <p><strong>Category:</strong> [[= product['Category']]]</p>
-            <p><strong>Price:</strong> [[= product['Price']]]</p>
+            <p><strong>{{ result.Name }}</strong></p>
+            <p><strong>Condition:</strong> {{ result.Condition }}</p>
+            <p><strong>Category:</strong> {{ result.Category }}</p>
+            <p><strong>Price:</strong> {{ result.Price }}</p>
           </a>
+        </div>
       </div>
+    </div>
+
+  </div>
+
+  <div v-else>
+    <h1 class="title" style="margin-left: 20px; margin-top: 40px;">
+      <span style="font-size: 25px;">All Listings</span>
+    </h1>
     
-  [[pass]]
-</div>
+    <div class="tile is-ancestor">
+      [[for i, product in enumerate(products):]]
+        [[if i % 4 == 0:]]
+          </div>
+          <div class="tile is-ancestor">
+        [[pass]]
+        
+          <div class="tile is-parent is-3">
+              <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
+                <figure class="image is-4by3">
+                  <img src="[[ = product['Image'] ]]" alt="Product Image">
+                </figure>
+                <p></p>
+                <p><strong>[[= product['Name']]]</strong></p>
+                <p><strong>Condition:</strong> [[= product['Condition']]]</p>
+                <p><strong>Category:</strong> [[= product['Category']]]</p>
+                <p><strong>Price:</strong> [[= product['Price']]]</p>
+              </a>
+          </div>
+        
+      [[pass]]
+    </div>
+    
+  </div>
+      
   
 
+</div>
+</div>
 
-<script src="index.js"></script>
-</body>
-</html>
+
+[[block page_scripts]]
+<script>
+let get_products_url = "[[=XML(get_products_url)]]";
+</script>
+<script src="js/index.js"></script>
+[[end]]
