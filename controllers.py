@@ -125,3 +125,16 @@ def get_products():
 
     print(results)
     return dict(results=results)
+
+@action('filter/<listing_category>', method = ["GET", "POST"])
+@action.uses(db, auth.user, 'category.html')
+def filter(listing_category):
+
+    assert listing_category is not None
+
+    display = db(db.listing.Category == listing_category).select().as_list()
+
+    # redirect(URL('category'))
+
+    return dict(listing_category = listing_category, display = display)
+    

@@ -1,0 +1,28 @@
+[[extend 'layout.html']]
+
+<h1 class="title" style="margin-left: 20px; margin-top: 40px;">
+    <span style="font-size: 25px;">All Listings</span>
+  </h1>
+  
+  <div class="tile is-ancestor">
+    [[for i, product in enumerate(display):]]
+      [[if i % 4 == 0:]]
+        </div>
+        <div class="tile is-ancestor">
+      [[pass]]
+      
+        <div class="tile is-parent is-3">
+            <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
+              <figure class="image is-4by3">
+                <img src="[[ = product['Image'] ]]" alt="Product Image">
+              </figure>
+              <p></p>
+              <p><strong>[[= product['Name']]]</strong></p>
+              <p><strong>Condition:</strong> [[= product['Condition']]]</p>
+              <p><strong>Category:</strong> [[= product['Category']]]</p>
+              <p><strong>Price:</strong> [[= product['Price']]]</p>
+            </a>
+        </div>
+      
+    [[pass]]
+  </div>
