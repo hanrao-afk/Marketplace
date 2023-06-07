@@ -100,19 +100,19 @@
         <a class="navbar-item" href="[[ =URL('filter', 'Clothing') ]]">
           Clothing
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="[[ =URL('filter', 'Electronics') ]]">
           Electronics
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="[[ =URL('filter', 'Dorm Gear') ]]">
           Dorm Gear
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="[[ =URL('filter', 'School Supplies') ]]">
           School Supplies
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="[[ =URL('filter', 'Free Stuff') ]]">
           Free Stuff
         </a>
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" href="[[ =URL('filter', 'Other') ]]">
           Other
         </a>
       </div>
@@ -205,7 +205,7 @@
 
 [[block page_scripts]]
 <script>
-let get_products_url = "[[=XML(get_products_url)]]";
+  let get_products_url = "[[=XML(get_products_url)]]";
 </script>
 <script src="js/index.js"></script>
 [[end]]

@@ -97,7 +97,10 @@
   <nav class="breadcrumb">
     <ul>
       <li><a class="has-text-grey" href = "[[=URL('index')]]">SlugSells</a></li>
-      <li class="is-active"><a> [[= item[0]['Category']]] </a></li>
+      
+      <li><a class="has-text-grey" href = "[[ =URL('filter', 'Clothing' ) ]]">[[= item[0]['Category'] ]]</a></li>
+
+      
       <li class="is-active"><a> [[= item[0]['Name']]] </a></li>
     </ul>
   </nav>
@@ -124,3 +127,4 @@
     </div> 
   </div>
 </div>
+
