@@ -119,21 +119,10 @@
     </div>
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
-        Condition
+        Price (Enter Maximum)   
       </a>
       <div class="navbar-dropdown" id="dropdown-condition">
-        <a class="navbar-item" href="#">
-          New
-        </a>
-        <a class="navbar-item" href="#">
-          Used - Like New
-        </a>
-        <a class="navbar-item" href="#">
-          Used - Good
-        </a>
-        <a class="navbar-item" href="#">
-          Used - Fair
-        </a>
+        <input class="input" type="text" placeholder="Maximum" v-model="query" @keyup="get_products" />
       </div>
     </div>
   </div>
