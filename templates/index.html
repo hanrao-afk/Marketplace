@@ -80,9 +80,9 @@
 
 <div class="control has-icons-right">
   <input class="input is-rounded" type="text" placeholder="Search users" v-model="query" @keyup="get_products" />
-  <span class="icon is-small is-right clickable" @click="clearQuery">
+  <!-- <span class="icon is-small is-right clickable" @click="clearQuery">
     <i class="fa fa-times-circle"></i>
-  </span>
+  </span> -->
   
 </div>
 
@@ -122,7 +122,7 @@
         Price (Enter Maximum)   
       </a>
       <div class="navbar-dropdown" id="dropdown-condition">
-        <input class="input" type="text" placeholder="Maximum" v-model="query" @keyup="get_products" />
+        <input class="input" type="text" placeholder="Maximum" v-model="maxInputValue"/>
       </div>
     </div>
   </div>

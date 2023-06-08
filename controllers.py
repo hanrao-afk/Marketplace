@@ -131,10 +131,11 @@ def get_products():
 def filter(listing_category):
 
     assert listing_category is not None
-
-    display = db(db.listing.Category == listing_category).select().as_list()
-
-    # redirect(URL('category'))
-
-    return dict(listing_category = listing_category, display = display)
+    if(listing_category.isdigit()):
+        max_price = int(listing_category)
+        display = db(db.listing.Price < max_price).select().as_list()
+    else:
+        display = db(db.listing.Category == listing_category).select().as_list()
+    
+    return dict(listing_category=listing_category, display=display)
     
