@@ -56,6 +56,13 @@ def index():
 #         redirect(URL('index'))
 #     return dict(form = form)
 
+@action('account', method = ["GET", "POST"])
+@action.uses(db, auth.user, 'account.html')
+def account():
+    account_info = get_user_email()
+    return dict(account_info = account_info)
+
+
 @action('add', method = ["GET", "POST"])
 @action.uses(db, auth.user, 'add.html')
 def add():

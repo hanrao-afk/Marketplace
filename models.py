@@ -22,8 +22,6 @@ def get_time():
 
 db.define_table(
     'listing',
-    ### TODO: define here any fields you need.
-    ### To help you, here's how to declare the user_email field.
     Field('Name'),
     Field('Condition', requires=IS_IN_SET(['New', 'Used - Like New', 'Used - Good', 'Used - Fair'])),
     Field('Category', requires=IS_IN_SET(['Clothing', 'Electronics', 'Dorm Gear', 'School Supplies' ,'Free Stuff', 'Other'])),

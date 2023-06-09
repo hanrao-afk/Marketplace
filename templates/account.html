@@ -1,0 +1,32 @@
+[[extend 'layout.html']]
+
+<style>
+  .account {
+    background-color: rgb(10, 10, 88);
+  }
+</style>
+
+<div class="section">
+  <div class="tile is-parent account">
+    <article class="tile is-child notification is-warning">
+      <p class="title">Account information:</p>
+      <div class="content">
+        <p class="subtitle">Email: [[=account_info]]</p>
+        <p class="subtitle">Address:</p>
+        <input type="text" class="subtitle" name="address" placeholder="Enter address">
+        <p class="subtitle">Phone Number:</p>
+        <input type="text" class="subtitle" name="phone" placeholder="Enter phone number">
+        <p class="subtitle">College Affiliation:</p>
+        <input type="text" class="subtitle" name="college" placeholder="Enter college affiliation">
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="section">
+  <div class="tile is-parent account">
+    <article class="tile is-child notification is-warning">
+      <p class="title">Liked Listings:</p>
+    </article>
+  </div>
+</div>
