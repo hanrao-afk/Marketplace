@@ -3,13 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SlugSells</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    -->
-
+ 
   <style>
     .scrolling-bar {
   overflow-x: auto;
@@ -65,34 +59,7 @@
   </style>
 </head>
 <body>
-   <!-- 
-
-  <nav class="navbar has-shadow is-warning">
-  
-  LOGO / BRAND 
-  <div class="navbar-brand">
-    <a class="navbar-item" href = "[[=URL('index')]]">
-      <img src="[[=URL('static', 'images/slugsells.png')]]" alt="site logo" style="max-height: 70px" class="py-2 px-2"> 
-    </a>
-    <a class="navbar-burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </a>
-  </div>
-  
-  
- NAV BAR 
-
-  <div class="navbar-menu" id="nav-links">
-    <div class="navbar-end">
-      <a class="navbar-item" href="[[=URL('add')]]">Add Listing</a>
-      <a class="navbar-item">My Account</a>
-      <a class="navbar-item">Shopping Cart (0)</a>
-    </div>
-  </div>
-</nav>
--->
+   
 <div class="section pt-4 mt-4">
   <nav class="breadcrumb">
     <ul>
@@ -125,6 +92,18 @@
     </div>
       </div>
     </div> 
+    <div class="tile is-ancestor">
+      <div class="tile is-parent"> 
+        <div class="tile is-child box"> 
+          <p class="title">Seller Information:</p>
+          <p><strong>Name:</strong> [[= item[0]['Condition']]]</p>
+          <p><strong>Address:</strong> [[= item[0]['Category']]]</p>
+          <p><strong>College Affiliation:</strong> $[[= item[0]['Price']]]</p>
+    </div>
+      </div>
+    </div> 
   </div>
+
+  
 </div>
 

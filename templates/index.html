@@ -3,56 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SlugSells</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-  -->
-
+  
 </head>
 
 
- <!-- 
-  <nav class="navbar has-shadow is-warning">
-
- LOGO / BRAND 
-  <div class="navbar-brand">
-    <a class="navbar-item" href = "[[=URL('index')]]">
-      <img src="[[=URL('static', 'images/slugsells.png')]]" alt="site logo" style="max-height: 70px" class="py-2 px-2"> 
-    </a>
-    <a class="navbar-burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </a>
-  </div>
-  
-   SEARCH BAR 
-<div class="navbar-menu">
-  <div class="navbar-start">
-    <div class="navbar-item search-bar">
-      <div class="control has-icons-right">
-        <input class="input is-expanded" type="text" placeholder="Search">
-        <span class="icon is-small is-right">
-          <i class="fas fa-search"></i>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  NAV BAR 
-
-  <div class="navbar-menu" id="nav-links">
-    <div class="navbar-end">
-      <a class="navbar-item" href="[[=URL('add')]]">Add Listing</a>
-      <a class="navbar-item">My Account</a>
-      <a class="navbar-item">Shopping Cart (0)</a>
-    </div>
-  </div>
-</nav>
--->
+ 
 <!-- NAVIGATION LINKS -->
 <style>
   [v-cloak] {
@@ -63,20 +18,7 @@
     
 <div class="section" id="vue-target" v-cloak>
   
-  <!-- SEARCH BAR -->
 
-<!--<div class="navbar-menu">
-  <div class="navbar-start">
-    <div class="navbar-item search-bar">
-      <div class="control has-icons-right">
-        <input class="input is-expanded" type="text" placeholder="Search Item" v-model="query" @keyup="get_products">
-      </div>
-      <span class="icon is-small is-right clickable" @click="clearQuery">
-        <i class="fa fa-times-circle"></i>
-      </span>
-    </div>
-  </div>
-</div> -->
 
 <div class="control has-icons-right">
   <input class="input is-rounded" type="text" placeholder="Search users" v-model="query" @keyup="get_products" />
