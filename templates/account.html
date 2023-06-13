@@ -30,6 +30,11 @@
               <th>College Affiliation</th>
               <td>[[=row['College']]]</td>
             </tr>
+            <tr>
+              <a class="button" href="[[=URL('edit', row['id'])]]">
+                <span class="icon"><i class="fa fa-fw fa-pencil"></i></span> <span>Edit</span>
+              </a>
+            </tr>
             [[pass]]
           </tbody>
         </table>

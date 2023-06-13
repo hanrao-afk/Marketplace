@@ -130,21 +130,16 @@ def save_account_info():
         )
     return dict(form = form)
     
-@action('edit/<sightings_id:int>', method = ["GET", "POST"])
+@action('edit/<account_id:int>', method = ["GET", "POST"])
 @action.uses(db, auth.user, 'edit.html')
-def edit(sightings_id = None):
-    assert sightings_id is not None
-    p = db.sightings[sightings_id]
-
-    if(p.user_email != get_user_email()):
-        return(URL('index', 'unauthorized access'))
-    
-    else:
-        if p is None:
-            redirect(URL('index'))
-        form = Form(db.sightings, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
-        if form.accepted:
-            redirect(URL('index'))
+def edit(account_id = None):
+    assert account_id is not None
+    p = db.account_info[account_id]
+    if p is None:
+        redirect(URL('index'))
+    form = Form(db.account_info, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
+    if form.accepted:
+        redirect(URL('account'))
     return dict(form=form)
 
 
