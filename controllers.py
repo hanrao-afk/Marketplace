@@ -60,7 +60,18 @@ def index():
 @action.uses(db, auth.user, 'account.html')
 def account():
     account_info = get_user_email()
-    return dict(account_info = account_info)
+    form = Form([
+    Field('Phone', 'string'),
+    Field('Payment',requires=IS_IN_SET(['Venmo', 'CashApp', 'Zelle', 'Apple Pay' ,'Cash', 'Other'])),
+    Field('College',  requires=IS_IN_SET(['Cowell', 'Stevenson', 'Crown', 'Merill' ,'Porter', 'Kresge', 'Oakes', 'Rachel Carson', 'College Nine', 'College Ten', 'Graduate Student', 'Other' ]))
+    ], csrf_session = session, formstyle = FormStyleBulma)
+    if form.accepted:    
+        db.account_info.insert(
+            Payment = form.vars["Payment"],
+            Phone=form.vars["Phone"],
+            College=form.vars["College"],
+        )
+    return dict(account_info = account_info, form = form)
 
 
 @action('add', method = ["GET", "POST"])
@@ -100,6 +111,24 @@ def add():
         # this actually stores it in the DB
         redirect(URL('index'))
     return dict(form = form)
+
+@action('save_account_info', method=['GET', 'POST'])
+@action.uses(db, auth.user, 'account.html')
+def save_account_info():
+    form = Form([
+    Field('Address', 'string'),
+    Field('Phone', 'string'),
+    Field('College',  requires=IS_IN_SET(['Cowell', 'Stevenson', 'Crown', 'Merill' ,'Porter', 'Kresge', 'Oakes', 'Rachel Carson', 'College Nine', 'College Ten', 'Graduate Student', 'Other' ]))
+    ], csrf_session = session, formstyle = FormStyleBulma)
+    if form.accepted:    
+        db.listing.insert(
+            Address=form.vars["Address"],
+            Phone=form.vars["Phone"],
+            College=form.vars["College"],
+        )
+    return dict(form = form)
+    
+
 
 
 @action('home', method=["GET", "POST"])

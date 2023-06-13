@@ -1,8 +1,21 @@
 [[extend 'layout.html']]
 
+<div class="section pt-4 mt-4">
+  <nav class="breadcrumb">
+    <ul>
+      <li><a class="has-text-grey" href="[[=URL('index')]]">SlugSells</a></li>
+      
+      <li><a class="has-text-dark" href="[[ =URL('filter', listing_category ) ]]">[[= listing_category]] </a></li>
+
+    </ul>
+  </nav>
+</div>
 <h1 class="title" style="margin-left: 20px; margin-top: 40px;">
     <span style="font-size: 25px;">[[= listing_category ]]</span>
   </h1>
+
+  
+  
   
   <div class="tile is-ancestor">
     [[for i, product in enumerate(display):]]
@@ -10,7 +23,7 @@
         </div>
         <div class="tile is-ancestor">
       [[pass]]
-      
+          
         <div class="tile is-parent is-3">
             <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
               <figure class="image is-4by3">

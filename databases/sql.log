@@ -54,3 +54,20 @@ success!
 timestamp: 2023-06-02T16:14:17.289034
 ALTER TABLE "listing" ADD "description" TEXT;
 success!
+timestamp: 2023-06-13T13:10:32.742561
+CREATE TABLE "account_info"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "email" CHAR(512),
+    "address" CHAR(512),
+    "phone" CHAR(512),
+    "college" CHAR(512)
+);
+success!
+success!
+timestamp: 2023-06-13T13:56:39.177217
+ALTER TABLE "account_info" ADD "payment" CHAR(512);
+success!
+success!
+success!
+success!
+success!
