@@ -6,15 +6,37 @@
   }
 </style>
 
+
 <div class="section">
   <div class="tile is-parent account">
     <article class="tile is-child notification is-warning">
       <div class="section">
         <p class="title"> Account information:</p>
-        <p class = "subtitle is-4"> [[=account_info]] </p>
-        [[=form]]
+        <table class="table is-bordered is-vertical is-warning">
+          <tbody>
+            [[for row in rows:]]
+            <tr>
+              <th>Email</th>
+              <td>[[=row['Email']]]</td>
+            </tr>
+              <th>Phone Number</th>
+              <td>[[=row['Phone']]]</td>
+            </tr>
+            <tr>
+              <th>Preferred Payment</th>
+              <td>[[=row['Payment']]]</td>
+            </tr>
+            <tr>
+              <th>College Affiliation</th>
+              <td>[[=row['College']]]</td>
+            </tr>
+            [[pass]]
+          </tbody>
+        </table>
       </div>
     </article>
   </div>
 </div>
+
+
 
