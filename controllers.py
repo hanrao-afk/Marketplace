@@ -73,7 +73,9 @@ def account():
             Phone=form.vars["Phone"],
             College=form.vars["College"],
         )
-    return dict(account_info = account_info, rows = rows, form = form)
+    
+    products = db(db.listing.created_by == auth.user_id).select().as_list()
+    return dict(account_info = account_info, rows = rows, form = form, products = products)
 
 
 @action('add', method = ["GET", "POST"])

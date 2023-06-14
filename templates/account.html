@@ -41,6 +41,33 @@
       </div>
     </article>
   </div>
+  
+</div>
+
+<div class = "section">
+  <p class = "title">Your Listings</p>
+  <div class="tile is-ancestor">
+    [[for i, product in enumerate(products):]]
+      [[if i % 4 == 0:]]
+        </div>
+        <div class="tile is-ancestor">
+      [[pass]]
+      
+        <div class="tile is-parent is-3">
+            <a class="tile is-child box" href="[[ =URL('description', product['id']) ]]">
+              <figure class="image is-4by3">
+                <img src="[[ = product['Image'] ]]" alt="Product Image">
+              </figure>
+              <p></p>
+              <p><strong>[[= product['Name']]]</strong></p>
+              <p><strong>Condition:</strong> [[= product['Condition']]]</p>
+              <p><strong>Category:</strong> [[= product['Category']]]</p>
+              <p><strong>Price:</strong> [[= product['Price']]]</p>
+            </a>
+        </div>
+      
+    [[pass]]
+  </div>
 </div>
 
 

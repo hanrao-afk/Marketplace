@@ -27,7 +27,8 @@ db.define_table(
     Field('Category', requires=IS_IN_SET(['Clothing', 'Electronics', 'Dorm Gear', 'School Supplies' ,'Free Stuff', 'Other'])),
     Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
     Field('Image', 'text'),
-    Field('Description', 'text')
+    Field('Description', 'text'),
+    Field('created_by', 'reference auth_user', default=lambda: auth.user_id, readable=False, writable=False),
 )
 
 db.define_table(
