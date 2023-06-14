@@ -31,6 +31,10 @@ db.define_table(
     Field('created_by', default=lambda: auth.user_id, readable=False, writable=False),
 )
 
+db.listing.id.readable = False
+db.listing.id.writable = False
+
+
 db.define_table(
     'account_info',
     Field('id', readable=False, writable=False),
