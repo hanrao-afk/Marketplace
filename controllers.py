@@ -190,4 +190,16 @@ def filter(listing_category):
         display = db(db.listing.Category == listing_category).select().as_list()
     
     return dict(listing_category=listing_category, display=display)
-    
+
+@action('edit_listing/<listing_id:int>', method = ["GET", "POST"])
+@action.uses(db, auth.user, 'edit_listing.html')
+def edit_listing(listing_id = None):
+    assert listing_id is not None
+    p = db.listing[listing_id]
+    print(p)
+    if p is None:
+        redirect(URL('index'))
+    form = Form(db.listing, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
+    if form.accepted:
+        redirect(URL('account'))
+    return dict(form=form)
