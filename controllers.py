@@ -238,3 +238,19 @@ def edit_listing(listing_id = None):
         redirect(URL('account'))
 
     return dict(form = form)
+
+@action('delete_listing/<listing_id:int>', method = ["GET", "POST"])
+@action.uses(db, auth.user)
+def delete_listing(listing_id=None):
+    assert listing_id is not None
+    p = db.listing[listing_id]
+
+    if p is None:
+        # If there is no such listing, then redirect to account.
+        redirect(URL('account'))
+    else:
+        # Delete the listing and redirect to account.
+        p.delete_record()
+        # Commit changes to the database
+        db.commit()
+        redirect(URL('account'))

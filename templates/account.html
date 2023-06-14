@@ -63,10 +63,16 @@
               <p><strong>Price:</strong> [[= product['Price']]]</p>
             </a> 
 
-            <a class="button is-warning" href="[[=URL('edit_listing', product['id'])]]">
-              <span class="icon"><i class="fa fa-fw fa-pencil"></i></span>
-              <span>Edit</span>
-            </a>
+            <div class="buttons is-flex is-flex-direction-column">
+              <a class="button is-warning" href="[[=URL('edit_listing', product['id'])]]">
+                <span class="icon"><i class="fa fa-fw fa-pencil"></i></span>
+                <span>Edit</span>
+              </a>
+              <a class="button is-danger" href="[[=URL('delete_listing', product['id'])]]">
+                <span class="icon"><i class="fa fa-fw fa-trash"></i></span>
+                <span>Delete</span>
+              </a>
+          </div>
         </div>
 
         
