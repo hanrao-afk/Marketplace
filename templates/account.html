@@ -14,28 +14,26 @@
         <p class="title"> Account information:</p>
         <table class="table is-bordered is-vertical is-warning">
           <tbody>
-            [[for row in rows:]]
             <tr>
               <th>Email</th>
-              <td>[[=row['Email']]]</td>
+              <td>[[= account_info]]</td>
             </tr>
               <th>Phone Number</th>
-              <td>[[=row['Phone']]]</td>
+              <td>[[=rows[0]['Phone']]]</td>
             </tr>
             <tr>
               <th>Preferred Payment</th>
-              <td>[[=row['Payment']]]</td>
+              <td>[[=rows[0]['Payment']]]</td>
             </tr>
             <tr>
               <th>College Affiliation</th>
-              <td>[[=row['College']]]</td>
+              <td>[[=rows[0]['College']]]</td>
             </tr>
             <tr>
-              <a class="button" href="[[=URL('edit', row['id'])]]">
+              <a class="button" href="[[=URL('edit', rows[0]['id'])]]">
                 <span class="icon"><i class="fa fa-fw fa-pencil"></i></span> <span>Edit</span>
               </a>
             </tr>
-            [[pass]]
           </tbody>
         </table>
       </div>
@@ -63,15 +61,15 @@
               <p><strong>Condition:</strong> [[= product['Condition']]]</p>
               <p><strong>Category:</strong> [[= product['Category']]]</p>
               <p><strong>Price:</strong> [[= product['Price']]]</p>
-              <a class="button is-warning" href="[[=URL('edit_listing', row['id'])]]">
-                <span class="icon"><i class="fa fa-fw fa-pencil"></i></span>
-                <span>Edit</span>
-              </a>
+            </a> 
+
+            <a class="button is-warning" href="[[=URL('edit_listing', product['id'])]]">
+              <span class="icon"><i class="fa fa-fw fa-pencil"></i></span>
+              <span>Edit</span>
             </a>
-              
-              
-            
         </div>
+
+        
       
     [[pass]]
   </div>

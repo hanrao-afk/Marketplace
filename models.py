@@ -28,13 +28,13 @@ db.define_table(
     Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
     Field('Image', 'text'),
     Field('Description', 'text'),
-    Field('created_by', 'reference auth_user', default=lambda: auth.user_id, readable=False, writable=False),
+    Field('created_by', default=lambda: auth.user_id, readable=False, writable=False),
 )
 
 db.define_table(
     'account_info',
     Field('id', readable=False, writable=False),
-    Field('Email', default=get_user_email, writable=False),
+    Field('Email', writable=False),
     Field('Phone', 'string'),
     Field('Payment',requires=IS_IN_SET(['Venmo', 'CashApp', 'Zelle', 'Apple Pay' ,'Cash', 'Other'])),
     Field('College',  requires=IS_IN_SET(['Cowell', 'Stevenson', 'Crown', 'Merill' ,'Porter', 'Kresge', 'Oakes', 'Rachel Carson', 'College Nine', 'College Ten', 'Graduate Student', 'Other' ])),

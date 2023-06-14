@@ -59,23 +59,23 @@ def index():
 @action('account', method = ["GET", "POST"])
 @action.uses(db, auth.user, 'account.html')
 def account():
-    rows = db(db.account_info).select().as_list()  
-    print(rows)
-    account_info = get_user_email()
-    form = Form([
-    Field('Phone', 'string'),
-    Field('Payment',requires=IS_IN_SET(['Venmo', 'CashApp', 'Zelle', 'Apple Pay' ,'Cash', 'Other'])),
-    Field('College',  requires=IS_IN_SET(['Cowell', 'Stevenson', 'Crown', 'Merill' ,'Porter', 'Kresge', 'Oakes', 'Rachel Carson', 'College Nine', 'College Ten', 'Graduate Student', 'Other' ]))
-    ], csrf_session = session, formstyle = FormStyleBulma)
-    if form.accepted:    
-        db.account_info.insert(
-            Payment = form.vars["Payment"],
-            Phone=form.vars["Phone"],
-            College=form.vars["College"],
-        )
+    account_info = str(get_user_email())
+    # getting email based on user current logged in 
+
+    query = (db.account_info.Email == account_info)
+    rows = db(query).select().as_list()
+
+    if not rows:
+        db.account_info.insert(Email=account_info, Phone='N/A', Payment='Other', College='Other')
+        query = (db.account_info.Email == account_info)
+        rows = db(query).select().as_list()
+
+
+    query2 = (db.listing.created_by == auth.user_id)
+    products = db(query2).select()
+
+    return dict(account_info=account_info, rows=rows, products=products)
     
-    products = db(db.listing.created_by == auth.user_id).select().as_list()
-    return dict(account_info = account_info, rows = rows, form = form, products = products)
 
 
 @action('add', method = ["GET", "POST"])

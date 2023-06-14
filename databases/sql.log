@@ -85,3 +85,18 @@ success!
 success!
 success!
 success!
+timestamp: 2023-06-14T15:25:52.568485
+ALTER TABLE "listing" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
