@@ -146,22 +146,6 @@ def edit(account_id = None):
         redirect(URL('account'))
     return dict(form=form)
 
-@action("insert_reply", method="POST")
-@action.uses(db, auth.user, url_signer.verify())
-def insert_reply():
-    content = request.json.get('content')
-    reply_to = request.json.get('reply_to', None)
-    if content:
-        db.meow.insert(
-            user_id=auth.current_user.get('id'),
-            author=get_user_email(),
-            content=content,
-            timestamp=datetime.datetime.utcnow(),
-            reply_to=reply_to,
-        )
-    return 'ok'
-
-
 @action('home', method=["GET", "POST"])
 @action.uses(db, auth.user, 'index.html')
 def home():
@@ -222,19 +206,26 @@ def edit_listing(listing_id = None):
 
     # form = Form(db.listing, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
     
+    
+
     if form.accepted:
         # We manually process the fields, this is to get image upload button and create the form
         # database stores the image as text, allowing us to store the data_url for each listing
        
-        fileObject = form.vars['Image']
-        # this is the image object that is passed in
-       
-        contents = fileObject.file.read()
-        # this is the contents of the image, essentially what encode
+        if form.vars.get('Image') is None:
+            data_url = p.Image
+        else:
+            print("reached here")
+            fileObject = form.vars['Image']
+            # this is the image object that is passed in
+        
+            contents = fileObject.file.read()
+            # this is the contents of the image, essentially what encode
 
-        encodedVal = base64.b64encode(contents).decode('utf-8')
-        data_url = f'data:{fileObject.content_type};base64,{encodedVal}'
+            encodedVal = base64.b64encode(contents).decode('utf-8')
+            data_url = f'data:{fileObject.content_type};base64,{encodedVal}'
 
+        
         # first line encodes the file to base 64 then decodes to make it part of data URL
         # second line creates the URL which we can call in index.html
     
