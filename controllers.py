@@ -39,7 +39,7 @@ from pydal.validators import *
 url_signer = URLSigner(session)
 
 @action('index')
-@action.uses(db, auth.user, 'index.html')
+@action.uses(db, auth.user, 'index.html', url_signer)
 def index():
     products = db(db.listing).select().as_list()
 
@@ -47,6 +47,7 @@ def index():
         get_products_url = URL('get_products'),
         meow_url=URL('insert_meow'),
         products=products,
+        url_signer=url_signer
         )
 
 
@@ -59,7 +60,7 @@ def index():
 #     return dict(form = form)
 
 @action('account', method = ["GET", "POST"])
-@action.uses(db, auth.user, 'account.html')
+@action.uses(db, auth.user, 'account.html', url_signer)
 def account():
     account_info = str(get_user_email())
     # getting email based on user current logged in 
@@ -76,7 +77,7 @@ def account():
     query2 = (db.listing.creator == get_user_email())
     products = db(query2).select()
 
-    return dict(account_info=account_info, rows=rows, products=products)
+    return dict(account_info=account_info, rows=rows, products=products, url_signer=url_signer)
     
 
 
@@ -135,7 +136,7 @@ def save_account_info():
     return dict(form = form)
     
 @action('edit/<account_id:int>', method = ["GET", "POST"])
-@action.uses(db, auth.user, 'edit.html')
+@action.uses(db, auth.user, 'edit.html', url_signer.verify())
 def edit(account_id = None):
     assert account_id is not None
     p = db.account_info[account_id]
@@ -144,7 +145,7 @@ def edit(account_id = None):
     form = Form(db.account_info, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
     if form.accepted:
         redirect(URL('account'))
-    return dict(form=form)
+    return dict(form=form) 
 
 @action('home', method=["GET", "POST"])
 @action.uses(db, auth.user, 'index.html')
@@ -188,8 +189,8 @@ def filter(listing_category):
     
     return dict(listing_category=listing_category, display=display)
 
-@action('edit_listing/<listing_id:int>', method = ["GET", "POST"])
-@action.uses(db, auth.user, 'edit_listing.html')
+@action('edit_listing/<listing_id:int>', method = ["GET", "POST"], )
+@action.uses(db, auth.user, 'edit_listing.html', url_signer.verify())
 def edit_listing(listing_id = None):
     assert listing_id is not None
     p = db.listing[listing_id]
@@ -207,15 +208,13 @@ def edit_listing(listing_id = None):
     # form = Form(db.listing, record = p, deletable = False, csrf_session = session, formstyle = FormStyleBulma)
     
     
-
     if form.accepted:
         # We manually process the fields, this is to get image upload button and create the form
         # database stores the image as text, allowing us to store the data_url for each listing
-       
-        if form.vars.get('Image') is None:
+        data_url = p.Image
+        if(form.vars['Image'] == p.Image):
             data_url = p.Image
         else:
-            print("reached here")
             fileObject = form.vars['Image']
             # this is the image object that is passed in
         

@@ -30,7 +30,7 @@
               <td>[[=rows[0]['College']]]</td>
             </tr>
             <tr>
-              <a class="button" href="[[=URL('edit', rows[0]['id'])]]">
+              <a class="button" href="[[=URL('edit', rows[0]['id'], signer=url_signer)]]">
                 <span class="icon"><i class="fa fa-fw fa-pencil"></i></span> <span>Edit</span>
               </a>
             </tr>
@@ -64,7 +64,7 @@
             </a> 
 
             <div class="buttons is-flex is-flex-direction-column">
-              <a class="button is-warning" href="[[=URL('edit_listing', product['id'])]]">
+              <a class="button is-warning" href="[[=URL('edit_listing', product['id'], signer=url_signer)]]">
                 <span class="icon"><i class="fa fa-fw fa-pencil"></i></span>
                 <span>Edit</span>
               </a>
@@ -80,6 +80,3 @@
     [[pass]]
   </div>
 </div>
-
-
-
