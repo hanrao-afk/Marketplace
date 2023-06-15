@@ -32,6 +32,7 @@ from py4web.utils.url_signer import URLSigner
 from .models import get_user_email
 from . common import db, session, T, cache, auth, signed_url
 import base64
+import datetime
 from pydal.validators import *
 
 
@@ -44,6 +45,7 @@ def index():
 
     return dict(
         get_products_url = URL('get_products'),
+        meow_url=URL('insert_meow'),
         products=products,
         )
 
@@ -144,7 +146,20 @@ def edit(account_id = None):
         redirect(URL('account'))
     return dict(form=form)
 
-
+@action("insert_meow", method="POST")
+@action.uses(db, auth.user, url_signer.verify())
+def insert_meow():
+    content = request.json.get('content')
+    reply_to = request.json.get('reply_to', None)
+    if content:
+        db.meow.insert(
+            user_id=auth.current_user.get('id'),
+            author=get_user_email(),
+            content=content,
+            timestamp=datetime.datetime.utcnow(),
+            reply_to=reply_to,
+        )
+    return 'ok'
 
 
 @action('home', method=["GET", "POST"])
@@ -159,11 +174,7 @@ def description(listing_id = None):
     assert listing_id is not None
 
     item = db(db.listing.id == listing_id).select().as_list()
-    print(item[0]['Price'])
-
     creator = db(db.account_info.Email == item[0]['creator']).select()
-
-
     return dict(item=item, creator = creator)
 
 @action('get_products')
@@ -178,8 +189,6 @@ def get_products():
         
 
     results = db(q).select(db.listing.ALL).as_list()
-
-    print(results)
     return dict(results=results)
 
 @action('filter/<listing_category>', method = ["GET", "POST"])
@@ -200,7 +209,6 @@ def filter(listing_category):
 def edit_listing(listing_id = None):
     assert listing_id is not None
     p = db.listing[listing_id]
-    # print(p)
     if p is None:
         redirect(URL('account'))
 

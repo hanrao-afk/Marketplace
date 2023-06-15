@@ -38,6 +38,15 @@ db.listing.id.writable = False
 
 
 db.define_table(
+    'meow',
+    Field('user_id', 'reference auth_user', requires=IS_NOT_EMPTY),
+    Field('author', 'string', requires=IS_NOT_EMPTY),
+    Field('content', 'text', requires=IS_NOT_EMPTY),
+    Field('timestamp', 'datetime', requires=IS_NOT_EMPTY, default=get_time()),
+    Field('reply_to', default=None),
+)
+
+db.define_table(
     'account_info',
     Field('id', readable=False, writable=False),
     Field('Email', writable=False),

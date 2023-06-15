@@ -133,3 +133,25 @@ success!
 success!
 success!
 success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2023-06-14T19:19:03.190184
+CREATE TABLE "meow"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "author" CHAR(512),
+    "content" TEXT,
+    "timestamp" TIMESTAMP,
+    "reply_to" CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!

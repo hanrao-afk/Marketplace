@@ -11,6 +11,8 @@ let init = (app) => {
         // Complete as you see fit.
         query: "",
         results: [],
+        add_content: [],
+        meow_list: []
     };    
     
     app.enumerate = (a) => {
@@ -36,11 +38,38 @@ let init = (app) => {
         app.vue.query = '';
     };
 
+    app.add_post = function () {
+        axios.post(add_post_url,
+            {
+                content: app.vue.add_content,
+
+            }).then(function(response) {
+                app.vue.meow_list.push({
+                    id: response.data.id,
+                    users_id: response.data.users_id,
+                    timestamp: response.data.timestamp,
+                    timeago : response.data.timeago,
+                    content: app.vue.add_content,
+                });
+
+                //console.log(app.vue.meow_list);
+            });
+            //console.log(app.vue.meow_list);
+            app.enumerate(app.vue.meow_list);
+
+            // load first
+            app.load_meow();
+            // reset input
+            app.reset_form();
+
+    };
+
     // This contains all the methods.
     app.methods = {
         // Complete as you see fit.
         get_products: app.get_products,
         clearQuery: app.clearQuery,
+        add_post: app.add_post
     };
 
     // This creates the Vue instance.
