@@ -71,7 +71,7 @@ def account():
         rows = db(query).select().as_list()
 
 
-    query2 = (db.listing.created_by == auth.user_id)
+    query2 = (db.listing.creator == get_user_email())
     products = db(query2).select()
 
     return dict(account_info=account_info, rows=rows, products=products)
@@ -158,9 +158,13 @@ def home():
 def description(listing_id = None):
     assert listing_id is not None
 
-    item = db(db.listing.id == listing_id).select()
+    item = db(db.listing.id == listing_id).select().as_list()
+    print(item[0]['Price'])
 
-    return dict(item=item)
+    creator = db(db.account_info.Email == item[0]['creator']).select()
+
+
+    return dict(item=item, creator = creator)
 
 @action('get_products')
 @action.uses(db, auth.user)

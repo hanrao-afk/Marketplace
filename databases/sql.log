@@ -109,3 +109,27 @@ success!
 success!
 success!
 success!
+success!
+success!
+timestamp: 2023-06-14T17:41:57.426717
+ALTER TABLE "listing" ADD "creator" CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

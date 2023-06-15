@@ -20,6 +20,8 @@ def get_time():
 #
 ## always commit your models to avoid problems later
 
+
+
 db.define_table(
     'listing',
     Field('Name'),
@@ -28,7 +30,7 @@ db.define_table(
     Field('Price', 'integer', requires=IS_INT_IN_RANGE(1,1000000), default=0),
     Field('Image', 'text'),
     Field('Description', 'text'),
-    Field('created_by', default=lambda: auth.user_id, readable=False, writable=False),
+    Field('creator', default= get_user_email, readable=False, writable=False),
 )
 
 db.listing.id.readable = False
