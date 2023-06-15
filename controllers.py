@@ -146,9 +146,9 @@ def edit(account_id = None):
         redirect(URL('account'))
     return dict(form=form)
 
-@action("insert_meow", method="POST")
+@action("insert_reply", method="POST")
 @action.uses(db, auth.user, url_signer.verify())
-def insert_meow():
+def insert_reply():
     content = request.json.get('content')
     reply_to = request.json.get('reply_to', None)
     if content:

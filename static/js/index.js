@@ -12,7 +12,7 @@ let init = (app) => {
         query: "",
         results: [],
         add_content: [],
-        meow_list: []
+        reply_list: []
     };    
     
     app.enumerate = (a) => {
@@ -44,7 +44,7 @@ let init = (app) => {
                 content: app.vue.add_content,
 
             }).then(function(response) {
-                app.vue.meow_list.push({
+                app.vue.reply_list.push({
                     id: response.data.id,
                     users_id: response.data.users_id,
                     timestamp: response.data.timestamp,
@@ -52,15 +52,9 @@ let init = (app) => {
                     content: app.vue.add_content,
                 });
 
-                //console.log(app.vue.meow_list);
             });
             //console.log(app.vue.meow_list);
-            app.enumerate(app.vue.meow_list);
-
-            // load first
-            app.load_meow();
-            // reset input
-            app.reset_form();
+            app.enumerate(app.vue.reply_list);
 
     };
 

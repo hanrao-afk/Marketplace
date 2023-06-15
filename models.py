@@ -38,7 +38,7 @@ db.listing.id.writable = False
 
 
 db.define_table(
-    'meow',
+    'reply',
     Field('user_id', 'reference auth_user', requires=IS_NOT_EMPTY),
     Field('author', 'string', requires=IS_NOT_EMPTY),
     Field('content', 'text', requires=IS_NOT_EMPTY),
