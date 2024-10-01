@@ -17,7 +17,6 @@ export default {
     loadGoogleMapsAPI() {
       return new Promise((resolve, reject) => {
         const script = document.createElement("script");
-        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDORgwx60MCTXytGWkpkucUdVuzUsHfaU0&callback=initGoogleMaps";
         script.async = true;
         script.defer = true;
         script.onload = resolve;
